@@ -1,0 +1,266 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:explore_vietnam/models/destination.dart';
+import 'package:flutter/material.dart';
+
+class DetailView extends StatelessWidget {
+  final Destination destination;
+  final String doi_ngon_ngu;
+  const DetailView({
+    super.key,
+    required this.destination,
+    required this.doi_ngon_ngu,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                CarouselSlider(
+                  items: destination.anh.map((item) {
+                    return Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30),
+                        ),
+                        image: DecorationImage(
+                          image: AssetImage(item),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    height: 320,
+                    viewportFraction: 1,
+                    enableInfiniteScroll: true,
+                  ),
+                ),
+
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.transparent,
+                            Colors.black54,
+                            Colors.black87,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 40,
+                  left: 20,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 300,
+                  margin: EdgeInsets.only(left: 30, right: 30),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        destination.ten["vi"] ?? "",
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            destination.danh_gia.toString(),
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          Icon(Icons.star, color: Colors.amber, size: 16),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            // SizedBox(height: 25),
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.location_on, size: 18, color: Colors.red),
+                      SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          doi_ngon_ngu == "vi"
+                              ? destination.dia_chi["vi"] ?? ""
+                              : destination.dia_chi["en"] ?? "",
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Icon(Icons.map, size: 18, color: Colors.blue),
+                            SizedBox(width: 6),
+                            Text(
+                              "Map",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 6),
+                  Row(
+                    children: [
+                      Icon(Icons.label, size: 18, color: Colors.orange),
+                      SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          doi_ngon_ngu == "vi"
+                              ? destination.danh_muc["vi"] ?? ""
+                              : destination.danh_muc["en"] ?? "",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Icon(Icons.share, size: 18, color: Colors.amber),
+                            SizedBox(width: 6),
+                            Text(
+                              "Share",
+                              style: TextStyle(
+                                color: Colors.amber,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      thongTinNhanh(
+                        Icons.wb_sunny,
+                        "Best time",
+                        destination.thoi_diem_dep[doi_ngon_ngu] ?? "",
+                      ),
+                      thongTinNhanh(
+                        Icons.attach_money,
+                        "Price",
+                        destination.chi_phi[doi_ngon_ngu] ?? "",
+                      ),
+                      thongTinNhanh(
+                        Icons.access_time,
+                        "Open",
+                        destination.gio_mo_cua[doi_ngon_ngu] ?? "",
+                      ),
+                    ],
+                  ),
+                  Divider(),
+                  SizedBox(height: 10),
+                  Text(
+                    doi_ngon_ngu == "vi" ? "Chi tiết" : "About",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    doi_ngon_ngu == "vi"
+                        ? destination.chi_tiet["vi"] ?? ""
+                        : destination.chi_tiet["en"] ?? "",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Divider(),
+                  SizedBox(height: 10),
+                  Text(
+                    doi_ngon_ngu == "vi"
+                        ? "Hoạt động vui chơi"
+                        : "Things to do",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: destination.hoat_dong.map((item) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Chip(
+                          label: Text(
+                            item[doi_ngon_ngu] ?? "",
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget thongTinNhanh(IconData icon, String title, String value) {
+  return Column(
+    children: [
+      Icon(icon, color: Colors.orange),
+      SizedBox(height: 4),
+      Text(title, style: TextStyle(fontSize: 12)),
+      Text(value, style: TextStyle(fontWeight: FontWeight.bold)),
+    ],
+  );
+}
