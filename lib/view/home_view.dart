@@ -1,3 +1,4 @@
+import 'package:explore_vietnam/data/app_text.dart';
 import 'package:explore_vietnam/widgets/banner.dart';
 import 'package:explore_vietnam/view/detail_view.dart';
 import 'package:explore_vietnam/data/destination_data.dart';
@@ -88,13 +89,29 @@ class _Home_ViewState extends State<Home_View> {
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.teal,
         unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        showUnselectedLabels: true,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Trang chủ"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: App_text.text["trang_chu"]?[widget.doi_ngon_ngu] ?? "",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map_rounded),
+            label: App_text.text["ban_do"]?[widget.doi_ngon_ngu] ?? "",
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: "Yêu thích",
+            label: App_text.text["yeu_thich"]?[widget.doi_ngon_ngu] ?? "",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Cài đặt'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.tips_and_updates),
+            label: App_text.text["tips"]?[widget.doi_ngon_ngu] ?? "",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: App_text.text["cai_dat"]?[widget.doi_ngon_ngu] ?? "",
+          ),
         ],
       ),
       body: SafeArea(
@@ -105,7 +122,7 @@ class _Home_ViewState extends State<Home_View> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.doi_ngon_ngu == "vi" ? "Chào mừng bạn" : "Welcome",
+                  App_text.text["chao_mung"]?[widget.doi_ngon_ngu] ?? "",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -133,9 +150,8 @@ class _Home_ViewState extends State<Home_View> {
                       timKiem(value);
                     },
                     decoration: InputDecoration(
-                      hintText: widget.doi_ngon_ngu == "vi"
-                          ? "Tìm kiếm địa điểm..."
-                          : "Seach destination...",
+                      hintText:
+                          App_text.text["tim_kiem"]?[widget.doi_ngon_ngu] ?? "",
                       prefixIcon: Icon(Icons.search),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -193,7 +209,7 @@ class _Home_ViewState extends State<Home_View> {
                 SizedBox(height: 25),
                 if (!dang_tim_kiem)
                   Text(
-                    widget.doi_ngon_ngu == "vi" ? "Phổ biến nhất" : "Popular",
+                    App_text.text["pho_bien"]?[widget.doi_ngon_ngu] ?? "",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
 
@@ -243,7 +259,7 @@ class _Home_ViewState extends State<Home_View> {
                               ),
                             ),
                             child: Text(
-                              item.ten["vi"] ?? "",
+                              item.ten[widget.doi_ngon_ngu] ?? "",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -259,7 +275,7 @@ class _Home_ViewState extends State<Home_View> {
                 SizedBox(height: 25),
                 if (!dang_tim_kiem) ...[
                   Text(
-                    widget.doi_ngon_ngu == "vi" ? "Nổi bật" : "Featured",
+                    App_text.text["noi_bat"]?[widget.doi_ngon_ngu] ?? "",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 15),
@@ -313,7 +329,7 @@ class _Home_ViewState extends State<Home_View> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  item.ten["vi"] ?? "",
+                                  item.ten[widget.doi_ngon_ngu] ?? "",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
