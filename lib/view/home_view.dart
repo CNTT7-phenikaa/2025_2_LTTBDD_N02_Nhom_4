@@ -1,3 +1,4 @@
+import 'package:explore_vietnam/view/settings_view.dart';
 import 'package:explore_vietnam/data/app_text.dart';
 import 'package:explore_vietnam/widgets/banner.dart';
 import 'package:explore_vietnam/view/detail_view.dart';
@@ -23,6 +24,8 @@ class _Home_ViewState extends State<Home_View> {
   ];
   TextEditingController tim_kiem = TextEditingController();
   bool dang_tim_kiem = false;
+  int doi_trang = 0;
+
   @override
   void initState() {
     super.initState();
@@ -68,27 +71,19 @@ class _Home_ViewState extends State<Home_View> {
 
   @override
   Widget build(BuildContext context) {
-    List<Destination> danh_sach_pho_bien = [...danh_sach_diem_den];
-    for (int i = 0; i < danh_sach_pho_bien.length; i++) {
-      for (int j = 0; j < danh_sach_pho_bien.length; j++) {
-        if (danh_sach_pho_bien[i].danh_gia < danh_sach_pho_bien[j].danh_gia) {
-          var temp = danh_sach_pho_bien[i];
-          danh_sach_pho_bien[i] = danh_sach_pho_bien[j];
-          danh_sach_pho_bien[j] = temp;
-        }
-      }
-    }
-    List<Destination> danh_sach_noi_bat = [];
-    for (var item in danh_sach_diem_den) {
-      if (item.danh_gia >= 4.5) {
-        danh_sach_noi_bat.add(item);
-      }
-    }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.teal,
-        unselectedItemColor: Colors.grey,
+        currentIndex: doi_trang,
+        onTap: (index) {
+          setState(() {
+            doi_trang = index;
+          });
+        },
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(
+          context,
+        ).colorScheme.onSurface.withValues(alpha: 0.6),
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
         items: [
@@ -114,254 +109,291 @@ class _Home_ViewState extends State<Home_View> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  App_text.text["chao_mung"]?[widget.doi_ngon_ngu] ?? "",
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 15),
-                BannerView(anh_banner: anh_banner),
-                SizedBox(height: 20),
+      body: doiTrang(),
+    );
+  }
 
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: TextField(
-                    controller: tim_kiem,
-                    onChanged: (value) {
-                      timKiem(value);
-                    },
-                    decoration: InputDecoration(
-                      hintText:
-                          App_text.text["tim_kiem"]?[widget.doi_ngon_ngu] ?? "",
-                      prefixIcon: Icon(Icons.search),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+  Widget trangChu() {
+    List<Destination> danh_sach_pho_bien = [...danh_sach_diem_den];
+    for (int i = 0; i < danh_sach_pho_bien.length; i++) {
+      for (int j = 0; j < danh_sach_pho_bien.length; j++) {
+        if (danh_sach_pho_bien[i].danh_gia < danh_sach_pho_bien[j].danh_gia) {
+          var temp = danh_sach_pho_bien[i];
+          danh_sach_pho_bien[i] = danh_sach_pho_bien[j];
+          danh_sach_pho_bien[j] = temp;
+        }
+      }
+    }
+    List<Destination> danh_sach_noi_bat = [];
+    for (var item in danh_sach_diem_den) {
+      if (item.danh_gia >= 4.5) {
+        danh_sach_noi_bat.add(item);
+      }
+    }
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                App_text.text["chao_mung"]?[widget.doi_ngon_ngu] ?? "",
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 15),
+              BannerView(anh_banner: anh_banner),
+              SizedBox(height: 20),
+
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
                     ),
+                  ],
+                ),
+                child: TextField(
+                  controller: tim_kiem,
+                  onChanged: (value) {
+                    timKiem(value);
+                  },
+                  decoration: InputDecoration(
+                    hintText:
+                        App_text.text["tim_kiem"]?[widget.doi_ngon_ngu] ?? "",
+                    prefixIcon: Icon(Icons.search),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(vertical: 15),
                   ),
                 ),
-                SizedBox(height: 20),
+              ),
+              SizedBox(height: 20),
 
-                SingleChildScrollView(
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    locDanhMuc({
+                      "vi": "all",
+                      "en": "all",
+                    }, widget.doi_ngon_ngu == "vi" ? "Tất cả" : "All"),
+                    locDanhMuc({
+                      "vi": "Núi",
+                      "en": "Mountain",
+                    }, widget.doi_ngon_ngu == "vi" ? "Núi" : "Mountain"),
+                    locDanhMuc(
+                      {
+                        "vi": "Khu bảo tồn thiên nhiên",
+                        "en": "Nature Reserves",
+                      },
+                      widget.doi_ngon_ngu == "vi"
+                          ? "Khu bảo tồn thiên nhiên"
+                          : "Nature Reserves",
+                    ),
+                    locDanhMuc({
+                      "vi": "Biển",
+                      "en": "Beach",
+                    }, widget.doi_ngon_ngu == "vi" ? "Biển" : "Beach"),
+                    locDanhMuc({
+                      "vi": "Đảo",
+                      "en": "Island",
+                    }, widget.doi_ngon_ngu == "vi" ? "Đảo" : "Island"),
+                    locDanhMuc(
+                      {
+                        "vi": "Di sản Văn hóa & Lịch sử",
+                        "en": "Cultural & Historical Heritage",
+                      },
+                      widget.doi_ngon_ngu == "vi"
+                          ? "Di sản Văn hóa & Lịch sử "
+                          : "Cultural & Historical Heritage",
+                    ),
+                    locDanhMuc({
+                      "vi": "Sông nước",
+                      "en": "Riverine",
+                    }, widget.doi_ngon_ngu == "vi" ? "Sông nước" : "Riverine"),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 25),
+              if (!dang_tim_kiem)
+                Text(
+                  App_text.text["pho_bien"]?[widget.doi_ngon_ngu] ?? "",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+
+              SizedBox(height: 15),
+
+              SizedBox(
+                height: 180,
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      locDanhMuc({
-                        "vi": "all",
-                        "en": "all",
-                      }, widget.doi_ngon_ngu == "vi" ? "Tất cả" : "All"),
-                      locDanhMuc({
-                        "vi": "Núi",
-                        "en": "Mountain",
-                      }, widget.doi_ngon_ngu == "vi" ? "Núi" : "Mountain"),
-                      locDanhMuc(
-                        {
-                          "vi": "Khu bảo tồn thiên nhiên",
-                          "en": "Nature Reserves",
-                        },
-                        widget.doi_ngon_ngu == "vi"
-                            ? "Khu bảo tồn thiên nhiên"
-                            : "Nature Reserves",
+                  itemCount: danh_sach_noi_bat.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Destination item = danh_sach_noi_bat[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailView(
+                              destination: item,
+                              doi_ngon_ngu: widget.doi_ngon_ngu,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 150,
+                        margin: EdgeInsets.only(right: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: AssetImage(item.anh[0]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          alignment: Alignment.bottomLeft,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black.withValues(alpha: 0.6),
+                                Colors.transparent,
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                            ),
+                          ),
+                          child: Text(
+                            item.ten[widget.doi_ngon_ngu] ?? "",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
-                      locDanhMuc({
-                        "vi": "Biển",
-                        "en": "Beach",
-                      }, widget.doi_ngon_ngu == "vi" ? "Biển" : "Beach"),
-                      locDanhMuc({
-                        "vi": "Đảo",
-                        "en": "Island",
-                      }, widget.doi_ngon_ngu == "vi" ? "Đảo" : "Island"),
-                      locDanhMuc(
-                        {
-                          "vi": "Di sản Văn hóa & Lịch sử",
-                          "en": "Cultural & Historical Heritage",
-                        },
-                        widget.doi_ngon_ngu == "vi"
-                            ? "Di sản Văn hóa & Lịch sử "
-                            : "Cultural & Historical Heritage",
-                      ),
-                      locDanhMuc(
-                        {"vi": "Sông nước", "en": "Riverine"},
-                        widget.doi_ngon_ngu == "vi" ? "Sông nước" : "Riverine",
-                      ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
+              ),
 
-                SizedBox(height: 25),
-                if (!dang_tim_kiem)
-                  Text(
-                    App_text.text["pho_bien"]?[widget.doi_ngon_ngu] ?? "",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-
+              SizedBox(height: 25),
+              if (!dang_tim_kiem) ...[
+                Text(
+                  App_text.text["noi_bat"]?[widget.doi_ngon_ngu] ?? "",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
                 SizedBox(height: 15),
 
-                SizedBox(
-                  height: 180,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: danh_sach_noi_bat.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Destination item = danh_sach_noi_bat[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailView(
-                                destination: item,
-                                doi_ngon_ngu: widget.doi_ngon_ngu,
-                              ),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          width: 150,
-                          margin: EdgeInsets.only(right: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: AssetImage(item.anh[0]),
-                              fit: BoxFit.cover,
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: danh_sach_noi_bat.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Destination item = danh_sach_noi_bat[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailView(
+                              destination: item,
+                              doi_ngon_ngu: widget.doi_ngon_ngu,
                             ),
                           ),
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            alignment: Alignment.bottomLeft,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black.withValues(alpha: 0.6),
-                                  Colors.transparent,
-                                ],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                              ),
-                            ),
-                            child: Text(
-                              item.ten[widget.doi_ngon_ngu] ?? "",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 16,
+                        ),
+                        height: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: AssetImage(item.anh[0]),
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ),
-
-                SizedBox(height: 25),
-                if (!dang_tim_kiem) ...[
-                  Text(
-                    App_text.text["noi_bat"]?[widget.doi_ngon_ngu] ?? "",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 15),
-
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: danh_sach_noi_bat.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Destination item = danh_sach_noi_bat[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailView(
-                                destination: item,
-                                doi_ngon_ngu: widget.doi_ngon_ngu,
-                              ),
-                            ),
-                          );
-                        },
                         child: Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                          height: 300,
+                          padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: AssetImage(item.anh[0]),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black.withValues(alpha: 0.6),
-                                  Colors.transparent,
-                                ],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                              ),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  item.ten[widget.doi_ngon_ngu] ?? "",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      item.danh_gia.toString(),
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                      size: 16,
-                                    ),
-                                  ],
-                                ),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black.withValues(alpha: 0.6),
+                                Colors.transparent,
                               ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
                             ),
                           ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                item.ten[widget.doi_ngon_ngu] ?? "",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    item.danh_gia.toString(),
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      );
-                    },
-                  ),
-                ],
+                      ),
+                    );
+                  },
+                ),
               ],
-            ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Widget doiTrang() {
+    switch (doi_trang) {
+      case 0:
+        return trangChu();
+      case 1:
+        return trangChu();
+      case 2:
+        return trangChu();
+      case 3:
+        return trangChu();
+      case 4:
+        return TrangCaiDat(doi_ngon_ngu: widget.doi_ngon_ngu);
+      default:
+        return trangChu();
+    }
   }
 
   Widget locDanhMuc(Map<String, String> danh_muc, String nhan) {
@@ -377,14 +409,20 @@ class _Home_ViewState extends State<Home_View> {
               nhan,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: da_chon ? Colors.black : Colors.grey,
+                color: da_chon
+                    ? Theme.of(context).colorScheme.onSurface
+                    : Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
             SizedBox(height: 5),
             Container(
               height: 3,
               width: 40,
-              color: da_chon ? Colors.blue : Colors.transparent,
+              color: da_chon
+                  ? Theme.of(context).colorScheme.primary
+                  : Colors.transparent,
             ),
           ],
         ),

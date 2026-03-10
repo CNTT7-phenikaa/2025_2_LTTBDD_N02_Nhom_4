@@ -1,7 +1,9 @@
+import 'package:explore_vietnam/view/detail_view.dart';
 import 'package:explore_vietnam/data/app_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:explore_vietnam/models/destination.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailView extends StatelessWidget {
   final Destination destination;
@@ -67,7 +69,9 @@ class DetailView extends StatelessWidget {
                       top: 40,
                       left: 20,
                       child: CircleAvatar(
-                        backgroundColor: Colors.grey,
+                        backgroundColor: Theme.of(
+                          context,
+                        ).colorScheme.surface.withValues(alpha: 0.9),
                         child: IconButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -124,13 +128,15 @@ class DetailView extends StatelessWidget {
                                   ? destination.dia_chi["vi"] ?? ""
                                   : destination.dia_chi["en"] ?? "",
                               style: TextStyle(
-                                color: Colors.black,
+                                color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: 18,
                               ),
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              moGgMap(destination.ten[doi_ngon_ngu] ?? "");
+                            },
                             child: Row(
                               children: [
                                 Icon(Icons.map, size: 18, color: Colors.blue),
@@ -158,7 +164,7 @@ class DetailView extends StatelessWidget {
                                   ? destination.danh_muc["vi"] ?? ""
                                   : destination.danh_muc["en"] ?? "",
                               style: TextStyle(
-                                color: Colors.black,
+                                color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -213,7 +219,7 @@ class DetailView extends StatelessWidget {
                       Text(
                         App_text.text["chi_tiet"]?[doi_ngon_ngu] ?? "",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -224,7 +230,7 @@ class DetailView extends StatelessWidget {
                             ? destination.chi_tiet["vi"] ?? ""
                             : destination.chi_tiet["en"] ?? "",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
                         ),
@@ -235,7 +241,7 @@ class DetailView extends StatelessWidget {
                       Text(
                         App_text.text["hoat_dong"]?[doi_ngon_ngu] ?? "",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -271,7 +277,7 @@ class DetailView extends StatelessWidget {
               height: 60,
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [BoxShadow(color: Colors.black38, blurRadius: 10)],
               ),
@@ -279,7 +285,9 @@ class DetailView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        moGgMap("${destination.ten[doi_ngon_ngu]}, Vietnam");
+                      },
                       icon: Icon(Icons.map),
                       label: Text(
                         App_text.text["ban_do"]?[doi_ngon_ngu] ?? "",
@@ -324,48 +332,6 @@ class DetailView extends StatelessWidget {
           ),
         ],
       ),
-
-      // bottomNavigationBar: Container(
-      //   padding: EdgeInsets.all(12),
-      //   decoration: BoxDecoration(
-      //     color: Colors.white,
-      //     boxShadow: [BoxShadow(color: Colors.black, blurRadius: 10)],
-      //   ),
-      //   child: Row(
-      //     children: [
-      //       Expanded(
-      //         child: ElevatedButton.icon(
-      //           onPressed: () {},
-      //           icon: Icon(Icons.map),
-      //           label: Text(doi_ngon_ngu == "vi" ? "Bản đồ" : "Site Map"),
-      //           style: ElevatedButton.styleFrom(
-      //             backgroundColor: Colors.blue,
-      //             padding: EdgeInsets.symmetric(vertical: 14),
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(12),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-
-      //       SizedBox(width: 12),
-      //       Expanded(
-      //         child: ElevatedButton.icon(
-      //           onPressed: () {},
-      //           icon: Icon(Icons.favorite),
-      //           label: Text(doi_ngon_ngu == "vi" ? "Yêu thích" : "Favorite"),
-      //           style: ElevatedButton.styleFrom(
-      //             backgroundColor: Colors.red,
-      //             padding: EdgeInsets.symmetric(vertical: 14),
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(12),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
@@ -379,4 +345,16 @@ Widget thongTinNhanh(IconData icon, String title, String value) {
       Text(value, style: TextStyle(fontWeight: FontWeight.bold)),
     ],
   );
+}
+
+// Mở ggmap cho địa điểm
+Future<void> moGgMap(String dia_diem) async {
+  final Uri url = Uri.parse(
+    "https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(dia_diem)}",
+  );
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url, mode: LaunchMode.externalApplication);
+  } else {
+    print("Không mở được Google Map");
+  }
 }
