@@ -15,7 +15,7 @@ List<Destination> destinations = [
           '''Ha Long Bay is located in the Gulf of Tonkin and belongs to Quang Ninh province. Ha Long Bay has 1,969 islands of varying sizes, of which 989 have names that describe their shape or legends associated with them. The bay covers a total area of ​​approximately 434 km² , comprising 775 limestone islands with diverse shapes, which people imagine were arranged by the hand of the Creator, forming a triangle consisting of Dau Go Cave to the west, Ba Ham Lake to the south, and Cong Tay Island to the east.
                Ha Long Bay is like a geographical work of art completed after millions of years of geological transformation. Exploring the bay, visitors will experience a relaxing feeling with its peaceful and tranquil atmosphere. Even more fascinating, the strangely shaped limestone islands, the numerous caves with countless beautiful stalactites and stalagmites will make you feel like you've wandered into a labyrinth in a fairytale world. There's Head Island, resembling a person standing and looking towards the mainland. Dragon Island looks like a dragon rising from the emerald-green water.''',
     },
-    danh_muc: {"vi": "Biển", "en": "Sea"},
+    danh_muc: {"vi": "Biển", "en": "Beach"},
     dia_chi: {"vi": "Quảng Ninh, Việt Nam", "en": "Quang Ninh, VietNam"},
     thoi_diem_dep: {"vi": "Tháng 5 - Tháng 8", "en": "May - August"},
 
@@ -31,7 +31,7 @@ List<Destination> destinations = [
     danh_gia: 4.8,
   ),
   Destination(
-    ten: {"vi": "Cố Đô Huế", "en": "The Former Imperial Capital of Huế"},
+    ten: {"vi": "Cố Đô Huế", "en": "Imperial City of Hue"},
     chi_tiet: {
       "vi":
           '''Cố đô Huế, vùng đất cố kính nằm bên dòng sông Hương thơ mộng, từng là kinh đô của triều Nguyễn từ năm 1802 đến 1945. Cố đô đã lưu giữ những công trình kiến trúc hoàng gia tráng lệ, được biết đến như 1 quần thể di tích. Những công tình này bao gồm hệ thống các di tích liên quan đến triều Nguyễn, phân bố ở thành phố Huế và các huyện lân cận như Hương Trà, Hương Thủy, Phú Vang, Phú Lộc. Kiến trúc Huế là sự kết hợp độc đáo giữa những nguyên tắc truyền thống Việt Nam, tư tưởng triết lý phương Đông và ảnh hưởng của kiến trúc quân sự phương Tây, hài hòa với thiên nhiên như núi Ngự Bình, sông Hương.''',
@@ -49,7 +49,7 @@ List<Destination> destinations = [
     dia_chi: {"vi": "Huế, Việt Nam", "en": "Hue, VietNam"},
     thoi_diem_dep: {"vi": "Tháng 1 - Tháng 4", "en": "January - April"},
 
-    chi_phi: {"vi": "150.000 - 200.000 VNĐ", "en": "150,000 - 200,000 VND"},
+    chi_phi: {"vi": "200.000 VNĐ", "en": "200,000 VND"},
 
     gio_mo_cua: {"vi": "07:00 - 17:30", "en": "07:00 AM - 05:30 PM"},
 
@@ -80,7 +80,7 @@ List<Destination> destinations = [
 
             The ideal time to explore Vĩnh Hy Bay is from May to August. During this period, the sea takes on an exceptionally clear blue color, creating a magical sense of peace for anyone fortunate enough to admire this stunning landscape. If you are unable to visit during these months, you can still travel to Vĩnh Hy Bay at any time of the year, as the weather here is generally pleasant and beautiful year-round.''',
     },
-    danh_muc: {"vi": "Biển", "en": "Sea"},
+    danh_muc: {"vi": "Biển", "en": "Beach"},
     dia_chi: {"vi": "Ninh Thuận, Việt Nam", "en": "Ninh Thuan, VietNam"},
     thoi_diem_dep: {"vi": "Tháng 4 - Tháng 8", "en": "April - August"},
 

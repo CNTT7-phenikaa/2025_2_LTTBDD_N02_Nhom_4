@@ -15,5 +15,8 @@ class App_text {
     "ban_do": {"vi": "Bản đồ", "en": "Map"},
     "chia_se": {"vi": "Chia sẻ", "en": "Share"},
     "tips": {"vi": "Mẹo vặt", "en": "Travel Tips"},
+    "ngon_ngu": {"vi": "Ngôn ngữ", "en": "Language"},
+    "mau_nen": {"vi": "Nền đen", "en": "Dark Mode"},
+    "gioi_thieu": {"vi": "Giới thiệu", "en": "About Us"},
   };
 }

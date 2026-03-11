@@ -8,7 +8,14 @@ import 'package:flutter/material.dart';
 
 class Home_View extends StatefulWidget {
   final String doi_ngon_ngu;
-  const Home_View({super.key, required this.doi_ngon_ngu});
+  final bool darkMode;
+  final Function(bool) doi_nen;
+  const Home_View({
+    super.key,
+    required this.doi_ngon_ngu,
+    required this.darkMode,
+    required this.doi_nen,
+  });
 
   @override
   State<Home_View> createState() => _Home_ViewState();
@@ -25,11 +32,20 @@ class _Home_ViewState extends State<Home_View> {
   TextEditingController tim_kiem = TextEditingController();
   bool dang_tim_kiem = false;
   int doi_trang = 0;
-
+  late String ngon_ngu;
+  late bool darkModeLocal;
   @override
   void initState() {
     super.initState();
     danh_sach_diem_den = destinations;
+    ngon_ngu = widget.doi_ngon_ngu;
+    darkModeLocal = widget.darkMode;
+  }
+
+  void Doi_ngon_ngu(String ngonngu) {
+    setState(() {
+      ngon_ngu = ngonngu;
+    });
   }
 
   void Loc_danh_muc(String danh_muc) {
@@ -40,7 +56,7 @@ class _Home_ViewState extends State<Home_View> {
         danh_sach_diem_den = destinations;
       } else {
         danh_sach_diem_den = destinations
-            .where((item) => item.danh_muc[widget.doi_ngon_ngu] == danh_muc)
+            .where((item) => item.danh_muc[ngon_ngu] == danh_muc)
             .toList();
       }
     });
@@ -51,12 +67,13 @@ class _Home_ViewState extends State<Home_View> {
       if (tu_khoa.isEmpty) {
         dang_tim_kiem = false;
         danh_sach_diem_den = destinations;
+        return;
       }
       dang_tim_kiem = true;
       List<Destination> kq = [];
       for (var item in destinations) {
         String ten_hien_tai;
-        if (widget.doi_ngon_ngu == "vi") {
+        if (ngon_ngu == "vi") {
           ten_hien_tai = item.ten["vi"] ?? "";
         } else {
           ten_hien_tai = item.ten["en"] ?? "";
@@ -89,23 +106,23 @@ class _Home_ViewState extends State<Home_View> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: App_text.text["trang_chu"]?[widget.doi_ngon_ngu] ?? "",
+            label: App_text.text["trang_chu"]?[ngon_ngu] ?? "",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map_rounded),
-            label: App_text.text["ban_do"]?[widget.doi_ngon_ngu] ?? "",
+            label: App_text.text["ban_do"]?[ngon_ngu] ?? "",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: App_text.text["yeu_thich"]?[widget.doi_ngon_ngu] ?? "",
+            label: App_text.text["yeu_thich"]?[ngon_ngu] ?? "",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.tips_and_updates),
-            label: App_text.text["tips"]?[widget.doi_ngon_ngu] ?? "",
+            label: App_text.text["tips"]?[ngon_ngu] ?? "",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: App_text.text["cai_dat"]?[widget.doi_ngon_ngu] ?? "",
+            label: App_text.text["cai_dat"]?[ngon_ngu] ?? "",
           ),
         ],
       ),
@@ -138,7 +155,7 @@ class _Home_ViewState extends State<Home_View> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                App_text.text["chao_mung"]?[widget.doi_ngon_ngu] ?? "",
+                App_text.text["chao_mung"]?[ngon_ngu] ?? "",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -166,8 +183,7 @@ class _Home_ViewState extends State<Home_View> {
                     timKiem(value);
                   },
                   decoration: InputDecoration(
-                    hintText:
-                        App_text.text["tim_kiem"]?[widget.doi_ngon_ngu] ?? "",
+                    hintText: App_text.text["tim_kiem"]?[ngon_ngu] ?? "",
                     prefixIcon: Icon(Icons.search),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -183,41 +199,41 @@ class _Home_ViewState extends State<Home_View> {
                     locDanhMuc({
                       "vi": "all",
                       "en": "all",
-                    }, widget.doi_ngon_ngu == "vi" ? "Tất cả" : "All"),
+                    }, ngon_ngu == "vi" ? "Tất cả" : "All"),
                     locDanhMuc({
                       "vi": "Núi",
                       "en": "Mountain",
-                    }, widget.doi_ngon_ngu == "vi" ? "Núi" : "Mountain"),
+                    }, ngon_ngu == "vi" ? "Núi" : "Mountain"),
                     locDanhMuc(
                       {
                         "vi": "Khu bảo tồn thiên nhiên",
                         "en": "Nature Reserves",
                       },
-                      widget.doi_ngon_ngu == "vi"
+                      ngon_ngu == "vi"
                           ? "Khu bảo tồn thiên nhiên"
                           : "Nature Reserves",
                     ),
                     locDanhMuc({
                       "vi": "Biển",
                       "en": "Beach",
-                    }, widget.doi_ngon_ngu == "vi" ? "Biển" : "Beach"),
+                    }, ngon_ngu == "vi" ? "Biển" : "Beach"),
                     locDanhMuc({
                       "vi": "Đảo",
                       "en": "Island",
-                    }, widget.doi_ngon_ngu == "vi" ? "Đảo" : "Island"),
+                    }, ngon_ngu == "vi" ? "Đảo" : "Island"),
                     locDanhMuc(
                       {
                         "vi": "Di sản Văn hóa & Lịch sử",
                         "en": "Cultural & Historical Heritage",
                       },
-                      widget.doi_ngon_ngu == "vi"
+                      ngon_ngu == "vi"
                           ? "Di sản Văn hóa & Lịch sử "
                           : "Cultural & Historical Heritage",
                     ),
                     locDanhMuc({
                       "vi": "Sông nước",
                       "en": "Riverine",
-                    }, widget.doi_ngon_ngu == "vi" ? "Sông nước" : "Riverine"),
+                    }, ngon_ngu == "vi" ? "Sông nước" : "Riverine"),
                   ],
                 ),
               ),
@@ -225,7 +241,7 @@ class _Home_ViewState extends State<Home_View> {
               SizedBox(height: 25),
               if (!dang_tim_kiem)
                 Text(
-                  App_text.text["pho_bien"]?[widget.doi_ngon_ngu] ?? "",
+                  App_text.text["pho_bien"]?[ngon_ngu] ?? "",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
 
@@ -245,7 +261,7 @@ class _Home_ViewState extends State<Home_View> {
                           MaterialPageRoute(
                             builder: (context) => DetailView(
                               destination: item,
-                              doi_ngon_ngu: widget.doi_ngon_ngu,
+                              doi_ngon_ngu: ngon_ngu,
                             ),
                           ),
                         );
@@ -275,7 +291,7 @@ class _Home_ViewState extends State<Home_View> {
                             ),
                           ),
                           child: Text(
-                            item.ten[widget.doi_ngon_ngu] ?? "",
+                            item.ten[ngon_ngu] ?? "",
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -291,7 +307,7 @@ class _Home_ViewState extends State<Home_View> {
               SizedBox(height: 25),
               if (!dang_tim_kiem) ...[
                 Text(
-                  App_text.text["noi_bat"]?[widget.doi_ngon_ngu] ?? "",
+                  App_text.text["noi_bat"]?[ngon_ngu] ?? "",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 15),
@@ -309,7 +325,7 @@ class _Home_ViewState extends State<Home_View> {
                           MaterialPageRoute(
                             builder: (context) => DetailView(
                               destination: item,
-                              doi_ngon_ngu: widget.doi_ngon_ngu,
+                              doi_ngon_ngu: ngon_ngu,
                             ),
                           ),
                         );
@@ -345,7 +361,7 @@ class _Home_ViewState extends State<Home_View> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                item.ten[widget.doi_ngon_ngu] ?? "",
+                                item.ten[ngon_ngu] ?? "",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -390,16 +406,27 @@ class _Home_ViewState extends State<Home_View> {
       case 3:
         return trangChu();
       case 4:
-        return TrangCaiDat(doi_ngon_ngu: widget.doi_ngon_ngu);
+        return TrangCaiDat(
+          doi_ngon_ngu: ngon_ngu, // gọi widget mới cho trang cài đặt
+          doiNgonNgu: Doi_ngon_ngu,
+          darkMode: darkModeLocal,
+          doi_nen: (value) {
+            setState(() {
+              darkModeLocal = value;
+            });
+            widget.doi_nen(value);
+            // setState(() {});
+          },
+        );
       default:
         return trangChu();
     }
   }
 
   Widget locDanhMuc(Map<String, String> danh_muc, String nhan) {
-    bool da_chon = danh_muc_da_chon == danh_muc[widget.doi_ngon_ngu];
+    bool da_chon = danh_muc_da_chon == danh_muc[ngon_ngu];
     return GestureDetector(
-      onTap: () => Loc_danh_muc(danh_muc[widget.doi_ngon_ngu]!),
+      onTap: () => Loc_danh_muc(danh_muc[ngon_ngu]!),
       child: Container(
         margin: EdgeInsets.only(right: 20),
         child: Column(

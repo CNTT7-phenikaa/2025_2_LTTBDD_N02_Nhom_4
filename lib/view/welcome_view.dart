@@ -2,7 +2,9 @@ import 'package:explore_vietnam/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeView extends StatelessWidget {
-  const WelcomeView({super.key});
+  final bool darkMode;
+  final Function(bool) doi_nen;
+  const WelcomeView({super.key, required this.darkMode, required this.doi_nen});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,11 @@ class WelcomeView extends StatelessWidget {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Home_View(doi_ngon_ngu: "vi"),
+                      builder: (context) => Home_View(
+                        doi_ngon_ngu: "vi",
+                        darkMode: darkMode,
+                        doi_nen: doi_nen,
+                      ),
                     ),
                   );
                 },
