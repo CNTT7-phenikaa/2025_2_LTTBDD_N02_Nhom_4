@@ -129,4 +129,85 @@ List<Destination> destinations = [
     anh: ["imgs/taxua1.jpg", "imgs/taxua2.jpg", "imgs/taxua3.jpg"],
     danh_gia: 4.5,
   ),
+  Destination(
+    ten: {"vi": "Đảo Phú Quốc", "en": "Phu Quoc Island"},
+    chi_tiet: {
+      "vi":
+          '''Phú Quốc, được mệnh danh là “đảo ngọc” của Việt Nam, nằm ở phía Tây Nam, thuộc tỉnh Kiên Giang. Với diện tích lớn nhất trong các đảo Việt Nam, Phú Quốc nổi bật bởi bãi biển tuyệt đẹp, rừng nguyên sinh xanh mát và hệ sinh thái đa dạng. Nơi đây không chỉ là thiên đường nghỉ dưỡng mà còn là điểm đến lý tưởng để khám phá văn hóa, ẩm thực đặc sắc và trải nghiệm du lịch đẳng cấp.
+          Mùa khô, kéo dài từ tháng 11 đến tháng 4 năm sau, là thời điểm lý tưởng nhất để du lịch Phú Quốc. Thời tiết lúc này nắng đẹp, biển lặng, nước trong xanh và bầu trời trong vắt, rất thích hợp cho các hoạt động ngoài trời như tắm biển, lặn ngắm san hô hay khám phá rừng nguyên sinh. Đây cũng là mùa cao điểm du lịch, các dịch vụ và tiện ích trên đảo đều hoạt động sôi nổi, mang lại trải nghiệm trọn vẹn cho du khách''',
+      "en":
+          '''Phu Quoc, known as the "pearl island" of Vietnam, is located in the southwest of Kien Giang province. With the largest area among Vietnamese islands, Phu Quoc stands out for its stunning beaches, lush green forests, and diverse ecosystem. It is not only a paradise for relaxation but also an ideal destination for exploring unique culture, cuisine, and experiencing world-class tourism.
+            The dry season, lasting from November to April of the following year, is the ideal time to visit Phu Quoc. The weather is sunny, the sea is calm, the water is clear, and the sky is bright, perfect for outdoor activities such as swimming, snorkeling, or exploring the pristine forest. This is also the peak tourist season, with services and amenities on the island bustling, providing a complete experience for visitors.''',
+    },
+    danh_muc: {"vi": "Đảo", "en": "Island"},
+    dia_chi: {"vi": "Kiên Giang, Việt Nam", "en": "Kien Giang, VietNam"},
+    thoi_diem_dep: {"vi": "Tháng 11 - Tháng 4", "en": "November - April"},
+
+    chi_phi: {"vi": "800.000 - 1.450.000 VNĐ", "en": "800.000 - 1.450.000 VNĐ"},
+
+    gio_mo_cua: {"vi": "Cả ngày", "en": "Open all day"},
+
+    hoat_dong: [
+      {"vi": "Khám phá các đảo nhỏ bằng cano", "en": "Island hopping by speedboat"},
+      {"vi": "Đi cáp treo vượt biển Hòn Thơm", "en": "Hon Thom cable car ride"},
+      {"vi": "Tham quan chợ đêm Phú Quốc", "en": "Visit Phu Quoc night market"},
+      {"vi": "Ngắm hoàng hôn tại Dinh Cậu", "en": "Watch sunset at Dinh Cau"},
+    ],
+    anh: ["imgs/phuquoc.png", "imgs/phuquoc2.png", "imgs/phuquoc3.png"],
+    danh_gia: 4.8,
+  ),
+  Destination(
+    ten: {"vi": "Vườn quốc gia Cúc Phương", "en": "Cuc Phuong National Park"},
+    chi_tiet: {
+      "vi":
+          '''Vườn quốc gia Cúc Phương là vườn quốc gia đầu tiên của Việt Nam, nằm trên địa phận ba tỉnh Ninh Bình, Thanh Hóa và Hòa Bình. Nơi đây nổi tiếng với hệ sinh thái rừng nhiệt đới phong phú, những cây cổ thụ hàng trăm năm tuổi và nhiều loài động thực vật quý hiếm
+          Du khách đến Cúc Phương có thể khám phá rừng nguyên sinh, tham quan các hang động tự nhiên, tìm hiểu về các trung tâm cứu hộ động vật hoang dã và trải nghiệm không gian thiên nhiên trong lành. Đặc biệt, vào mùa bướm (tháng 4 - tháng 6), hàng ngàn con bướm xuất hiện tạo nên khung cảnh rất đẹp và độc đáo.''',
+      "en":
+          '''Cuc Phuong National Park is the first national park in Vietnam, located across the provinces of Ninh Binh, Thanh Hoa, and Hoa Binh. It is famous for its rich tropical forest ecosystem, ancient trees that are hundreds of years old, and many rare species of flora and fauna.
+            Visitors can explore the primary forest, visit natural caves, learn about wildlife rescue centers, and enjoy the peaceful natural environment. During butterfly season (April to June), thousands of butterflies appear, creating a beautiful and unique natural scene.''',
+    },
+    danh_muc: {"vi": "Khu bảo tồn thiên nhiên", "en": "Natural Reserve"},
+    dia_chi: {"vi": "Ninh Bình, Thanh Hóa, Hòa Bình, Việt Nam", "en": "Ninh Binh, Thanh Hoa, Hoa Binh, Vietnam"},
+    thoi_diem_dep: {"vi": "Tháng 4 - Tháng 6", "en": "April - June"},
+
+    chi_phi: {"vi": "60.000 - 100.000 VNĐ", "en": "60.000 - 100.000 VNĐ"},
+
+    gio_mo_cua: {"vi": "06:00 - 18:00", "en": "06:00 - 18:00"},
+
+    hoat_dong: [
+      {"vi": "Khám phá rừng nguyên sinh", "en": "Explore the primary forest"},
+      {"vi": "Tham quan trung tâm cứu hộ linh trưởng", "en": "Visit the primate rescue center"},
+      {"vi": "Khám phá các hang động tự nhiên", "en": "Explore natural caves"},
+      {"vi": "Ngắm bướm trong rừng", "en": "Butterfly watching in the forest"},
+    ],
+    anh: ["imgs/cucphuong.png", "imgs/cucphuong2.png", "imgs/cucphuong3.jpg"],
+    danh_gia: 4.9,
+  ),
+   Destination(
+    ten: {"vi": "Công viên địa chất Non Nước Cao Bằng", "en": "Non Nuoc Cao Bang Geopark"},
+    chi_tiet: {
+      "vi":
+          '''Công viên địa chất Non Nước Cao Bằng là một trong những điểm đến thiên nhiên nổi bật của Việt Nam và đã được UNESCO công nhận là Công viên địa chất toàn cầu. Khu vực này nổi tiếng với cảnh quan núi đá vôi hùng vĩ, thung lũng xanh, hang động kỳ thú và những dòng sông trong vắt.
+          Nơi đây còn gắn liền với nhiều địa danh nổi tiếng như thác Bản Giốc, động Ngườm Ngao và hồ Thang Hen. Du khách đến đây không chỉ được chiêm ngưỡng thiên nhiên hùng vĩ mà còn có cơ hội tìm hiểu văn hóa độc đáo của các dân tộc địa phương như Tày, Nùng và Dao.''',
+      "en":
+          '''Non Nuoc Cao Bang Geopark is one of Vietnam's most remarkable natural destinations and has been recognized by UNESCO as a Global Geopark. The area is famous for its majestic limestone mountains, green valleys, mysterious caves, and crystal-clear rivers.
+            It is also home to many famous attractions such as Ban Gioc Waterfall, Nguom Ngao Cave, and Thang Hen Lake. Visitors can enjoy breathtaking landscapes while discovering the unique culture of local ethnic groups such as the Tay, Nung, and Dao.''',
+    },
+    danh_muc: {"vi": "Sông nước", "en": "Rivers and Lakes"},
+    dia_chi: {"vi": "Cao Bằng, Việt Nam", "en": "Cao Bang, Vietnam"},
+    thoi_diem_dep: {"vi": "Tháng 9 - Tháng 10", "en": "September - October"},
+
+    chi_phi: {"vi": "45.000 - 100.000 VNĐ", "en": "45.000 - 100.000 VNĐ"},
+
+    gio_mo_cua: {"vi": "06:00 - 18:00", "en": "06:00 - 18:00"},
+
+    hoat_dong: [
+      {"vi": "Tham quan thác Bản Giốc", "en": "Visit Ban Gioc Waterfall"},
+      {"vi": "Khám phá động Ngườm Ngao", "en": "Explore Nguom Ngao Cave"},
+      {"vi": "Tham quan hồ Thang Hen", "en": "Visit Thang Hen Lake"},
+      {"vi": "Trải nghiệm văn hóa dân tộc địa phương", "en": "Experience local ethnic culture"},
+    ],
+    anh: ["imgs/caobang.jpg", "imgs/caobang2.jpg", "imgs/caobang3.jpg"],
+    danh_gia: 4.8,
+  ),
 ];
