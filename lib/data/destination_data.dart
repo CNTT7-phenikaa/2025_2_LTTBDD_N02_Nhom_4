@@ -184,7 +184,7 @@ List<Destination> destinations = [
     danh_gia: 4.9,
   ),
    Destination(
-    ten: {"vi": "Công viên địa chất Non Nước Cao Bằng", "en": "Non Nuoc Cao Bang Geopark"},
+    ten: {"vi": "Non Nước Cao Bằng", "en": "Non Nuoc Cao Bang"},
     chi_tiet: {
       "vi":
           '''Công viên địa chất Non Nước Cao Bằng là một trong những điểm đến thiên nhiên nổi bật của Việt Nam và đã được UNESCO công nhận là Công viên địa chất toàn cầu. Khu vực này nổi tiếng với cảnh quan núi đá vôi hùng vĩ, thung lũng xanh, hang động kỳ thú và những dòng sông trong vắt.
@@ -193,7 +193,7 @@ List<Destination> destinations = [
           '''Non Nuoc Cao Bang Geopark is one of Vietnam's most remarkable natural destinations and has been recognized by UNESCO as a Global Geopark. The area is famous for its majestic limestone mountains, green valleys, mysterious caves, and crystal-clear rivers.
             It is also home to many famous attractions such as Ban Gioc Waterfall, Nguom Ngao Cave, and Thang Hen Lake. Visitors can enjoy breathtaking landscapes while discovering the unique culture of local ethnic groups such as the Tay, Nung, and Dao.''',
     },
-    danh_muc: {"vi": "Sông nước", "en": "Rivers and Lakes"},
+    danh_muc: {"vi": "Sông nước", "en": "Riverine"},
     dia_chi: {"vi": "Cao Bằng, Việt Nam", "en": "Cao Bang, Vietnam"},
     thoi_diem_dep: {"vi": "Tháng 9 - Tháng 10", "en": "September - October"},
 
@@ -207,7 +207,7 @@ List<Destination> destinations = [
       {"vi": "Tham quan hồ Thang Hen", "en": "Visit Thang Hen Lake"},
       {"vi": "Trải nghiệm văn hóa dân tộc địa phương", "en": "Experience local ethnic culture"},
     ],
-    anh: ["imgs/caobang.jpg", "imgs/caobang2.jpg", "imgs/caobang3.jpg"],
+    anh: ["imgs/caobang1.jpg", "imgs/caobang2.jpg", "imgs/caobang3.jpg"],
     danh_gia: 4.8,
   ),
 ];
