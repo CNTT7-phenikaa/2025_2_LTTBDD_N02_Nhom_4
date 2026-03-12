@@ -1,4 +1,5 @@
 import 'package:explore_vietnam/data/app_text.dart';
+import 'package:explore_vietnam/view/about_view.dart';
 import 'package:flutter/material.dart';
 
 class TrangCaiDat extends StatefulWidget {
@@ -71,7 +72,18 @@ class _TrangCaiDatState extends State<TrangCaiDat> {
               App_text.text["gioi_thieu"]?[widget.doi_ngon_ngu] ?? "",
             ),
             trailing: Icon(Icons.arrow_forward_ios),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>  gioithieu(
+                    doi_ngon_ngu: widget.doi_ngon_ngu,
+                    darkMode: widget.darkMode,
+                    doi_nen: widget.doi_nen,
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

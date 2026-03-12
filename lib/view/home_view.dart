@@ -4,6 +4,7 @@ import 'package:explore_vietnam/widgets/banner.dart';
 import 'package:explore_vietnam/view/detail_view.dart';
 import 'package:explore_vietnam/data/destination_data.dart';
 import 'package:explore_vietnam/models/destination.dart';
+import 'package:explore_vietnam/view/favorite_view.dart';
 import 'package:flutter/material.dart';
 
 class Home_View extends StatefulWidget {
