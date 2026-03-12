@@ -1,3 +1,4 @@
+import 'package:explore_vietnam/view/tips_view.dart';
 import 'package:explore_vietnam/view/settings_view.dart';
 import 'package:explore_vietnam/data/app_text.dart';
 import 'package:explore_vietnam/widgets/banner.dart';
@@ -108,10 +109,6 @@ class _Home_ViewState extends State<Home_View> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: App_text.text["trang_chu"]?[ngon_ngu] ?? "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map_rounded),
-            label: App_text.text["ban_do"]?[ngon_ngu] ?? "",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
@@ -403,10 +400,8 @@ class _Home_ViewState extends State<Home_View> {
       case 1:
         return trangChu();
       case 2:
-        return trangChu();
+        return TipsView(doi_ngon_ngu: ngon_ngu);
       case 3:
-        return trangChu();
-      case 4:
         return TrangCaiDat(
           doi_ngon_ngu: ngon_ngu, // gọi widget mới cho trang cài đặt
           doiNgonNgu: Doi_ngon_ngu,

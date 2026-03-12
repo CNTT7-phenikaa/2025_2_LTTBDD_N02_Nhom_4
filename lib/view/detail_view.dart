@@ -1,4 +1,3 @@
-import 'package:explore_vietnam/view/detail_view.dart';
 import 'package:explore_vietnam/data/app_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:explore_vietnam/models/destination.dart';

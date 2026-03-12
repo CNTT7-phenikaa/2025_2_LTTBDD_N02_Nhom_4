@@ -18,5 +18,15 @@ class App_text {
     "ngon_ngu": {"vi": "Ngôn ngữ", "en": "Language"},
     "mau_nen": {"vi": "Nền đen", "en": "Dark Mode"},
     "gioi_thieu": {"vi": "Giới thiệu", "en": "About Us"},
+    "am_thuc": {"vi": "Ẩm thực", "en": "Food & Drink"},
+    "phuong_tien": {"vi": "Phương tiện", "en": "Transportation"},
+    "luu_tru": {"vi": "Lưu trú", "en": "Accommodation"},
+    "van_hoa": {"vi": "Văn hóa & Ứng xử", "en": "Culture & Etiquette"},
+    "chi_phi_tip": {"vi": "Chi phí & Ngân sách", "en": "Costs & Budget"},
+    "an_toan": {"vi": "An toàn du lịch", "en": "Safety Tips"},
+    "ngon_ngu_tip": {
+      "vi": "Ngôn ngữ & Giao tiếp",
+      "en": "Language & Communication",
+    },
   };
 }
