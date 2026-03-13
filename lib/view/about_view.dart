@@ -1,3 +1,6 @@
+import 'package:explore_vietnam/data/app_text.dart';
+import 'package:explore_vietnam/data/member_data.dart';
+import 'package:explore_vietnam/models/member.dart';
 import 'package:flutter/material.dart';
 
 class gioithieu extends StatefulWidget {
@@ -17,67 +20,30 @@ class gioithieu extends StatefulWidget {
 }
 
 class _gioithieuState extends State<gioithieu> {
-
   @override
   Widget build(BuildContext context) {
-
-    final List<Member> members = [
-      Member(
-        name: {
-          "vi": "Nguyễn Quỳnh Trang",
-          "en": "Nguyen Quynh Trang"
-        },
-        school: {
-          "vi": "Đại học Phenikaa",
-          "en": "Phenikaa University"
-        },
-        email: "23010651@st.phenikaa-uni.edu.vn",
-      ),
-      Member(
-        name: {
-          "vi": "Phạm Thị Phương Anh",
-          "en": "Pham Thi Phuong Anh"
-        },
-        school: {
-          "vi": "Đại học Phenikaa",
-          "en": "Phenikaa University"
-        },
-        email: "23010706@st.phenikaa-uni.edu.vn",
-      ),
-    ];
-
     return Scaffold(
       backgroundColor: widget.darkMode ? Colors.black : Colors.white,
 
       appBar: AppBar(
-        title: Text(
-          widget.doi_ngon_ngu == "vi"
-              ? "Giới thiệu"
-              : "Introduce",
-        ),
+        title: Text(App_text.text["gioi_thieu"]?[widget.doi_ngon_ngu] ?? ""),
         centerTitle: true,
         elevation: 0,
-        backgroundColor:
-            widget.darkMode ? Colors.black : Colors.white,
-        foregroundColor:
-            widget.darkMode ? Colors.white : Colors.black,
+        backgroundColor: widget.darkMode ? Colors.black : Colors.white,
+        foregroundColor: widget.darkMode ? Colors.white : Colors.black,
       ),
 
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: 16, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-
               const SizedBox(height: 30),
 
               Text(
-                widget.doi_ngon_ngu == "vi"
-                    ? "Về chúng tôi"
-                    : "About us",
+                App_text.text["gioi_thieu"]?[widget.doi_ngon_ngu] ?? "",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -90,9 +56,7 @@ class _gioithieuState extends State<gioithieu> {
               const SizedBox(height: 10),
 
               Text(
-                widget.doi_ngon_ngu == "vi"
-                    ? "Các thành viên của nhóm gồm:"
-                    : "Team members:",
+                App_text.text["thanh_vien"]?[widget.doi_ngon_ngu] ?? "",
                 style: TextStyle(
                   fontSize: 16,
                   color: widget.darkMode
@@ -118,20 +82,7 @@ class _gioithieuState extends State<gioithieu> {
   }
 }
 
-class Member {
-  final Map<String, String> name;
-  final Map<String, String> school;
-  final String email;
-
-  Member({
-    required this.name,
-    required this.school,
-    required this.email,
-  });
-}
-
 class MemberCard extends StatelessWidget {
-
   final Member member;
   final String doi_ngon_ngu;
   final bool darkMode;
@@ -145,16 +96,13 @@ class MemberCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
 
       child: Card(
         color: darkMode ? Colors.grey[900] : Colors.white,
 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
 
         elevation: 4,
 
@@ -164,15 +112,12 @@ class MemberCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Text(
                 member.name[doi_ngon_ngu] ?? "",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: darkMode
-                      ? Colors.white
-                      : const Color(0xFF2C3E50),
+                  color: darkMode ? Colors.white : const Color(0xFF2C3E50),
                 ),
               ),
 
@@ -182,9 +127,7 @@ class MemberCard extends StatelessWidget {
                 member.school[doi_ngon_ngu] ?? "",
                 style: TextStyle(
                   fontSize: 16,
-                  color: darkMode
-                      ? Colors.white70
-                      : const Color(0xFF555555),
+                  color: darkMode ? Colors.white70 : const Color(0xFF555555),
                 ),
               ),
 
@@ -194,9 +137,7 @@ class MemberCard extends StatelessWidget {
                 member.email,
                 style: TextStyle(
                   fontSize: 16,
-                  color: darkMode
-                      ? Colors.white70
-                      : const Color(0xFF555555),
+                  color: darkMode ? Colors.white70 : const Color(0xFF555555),
                 ),
               ),
             ],

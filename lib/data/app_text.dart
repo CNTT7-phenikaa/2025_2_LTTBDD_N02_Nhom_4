@@ -17,7 +17,7 @@ class App_text {
     "tips": {"vi": "Mẹo vặt", "en": "Travel Tips"},
     "ngon_ngu": {"vi": "Ngôn ngữ", "en": "Language"},
     "mau_nen": {"vi": "Nền đen", "en": "Dark Mode"},
-    "gioi_thieu": {"vi": "Giới thiệu", "en": "About Us"},
+    "gioi_thieu": {"vi": "Về chúng tôi", "en": "About Us"},
     "am_thuc": {"vi": "Ẩm thực", "en": "Food & Drink"},
     "phuong_tien": {"vi": "Phương tiện", "en": "Transportation"},
     "luu_tru": {"vi": "Lưu trú", "en": "Accommodation"},
@@ -28,5 +28,6 @@ class App_text {
       "vi": "Ngôn ngữ & Giao tiếp",
       "en": "Language & Communication",
     },
+    "thanh_vien": {"vi": "Các thành viên nhóm gồm:", "en": "Team Members:"},
   };
 }
