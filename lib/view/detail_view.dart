@@ -171,19 +171,44 @@ class DetailView extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              // if (Favorite.isFavorite(destination)) {
+                              //   ScaffoldMessenger.of(context).showSnackBar(
+                              //     SnackBar(
+                              //       content: Text(
+                              //         App_text.text["da_co_yeu_thich"]?[doi_ngon_ngu] ??
+                              //             "",
+                              //       ),
+                              //     ),
+                              //   );
+                              // } else {
+                              //   Favorite.addFavorite(destination);
+
+                              //   ScaffoldMessenger.of(context).showSnackBar(
+                              //     SnackBar(
+                              //       content: Text(
+                              //         App_text.text["da_them_yeu_thich"]?[doi_ngon_ngu] ??
+                              //             "",
+                              //       ),
+                              //     ),
+                              //   );
+                              // }
+                            },
                             child: Row(
                               children: [
                                 Icon(
-                                  Icons.share,
-                                  size: 18,
-                                  color: Colors.amber,
+                                  Favorite.isFavorite(destination)
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  size: 20,
+                                  color: Colors.red,
                                 ),
                                 SizedBox(width: 6),
                                 Text(
-                                  App_text.text["chia_se"]?[doi_ngon_ngu] ?? "",
+                                  App_text.text["yeu_thich"]?[doi_ngon_ngu] ??
+                                      "",
                                   style: TextStyle(
-                                    color: Colors.amber,
+                                    color: Colors.red,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -311,12 +336,12 @@ class DetailView extends StatelessWidget {
                       onPressed: () {
                         //xoa yeu thich
                         if (Favorite.isFavorite(destination)) {
-                          Favorite.removeFavorite(destination);
                           //tbao
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                App_text.text["da_xoa_yeu_thich"]?[doi_ngon_ngu] ?? "",
+                                App_text.text["da_them_yeu_thich"]?[doi_ngon_ngu] ??
+                                    "",
                               ),
                             ),
                           );
@@ -327,7 +352,8 @@ class DetailView extends StatelessWidget {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                App_text.text["da_them_yeu_thich"]?[doi_ngon_ngu] ?? "",
+                                App_text.text["da_them_yeu_thich"]?[doi_ngon_ngu] ??
+                                    "",
                               ),
                             ),
                           );

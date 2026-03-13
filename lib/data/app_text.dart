@@ -30,12 +30,25 @@ class App_text {
       "en": "Language & Communication",
     },
     "thanh_vien": {"vi": "Các thành viên nhóm gồm:", "en": "Team Members:"},
-    "da_them_yeu_thich": {"vi": "Đã thêm vào yêu thích", "en": "Added to favorites"},
-    "da_xoa_yeu_thich": {"vi": "Đã bỏ khỏi yêu thích", "en": "Removed from favorites"},
+    "da_them_yeu_thich": {
+      "vi": "Đã thêm vào yêu thích",
+      "en": "Added to favorites",
+    },
+    "da_xoa_yeu_thich": {
+      "vi": "Đã bỏ khỏi yêu thích",
+      "en": "Removed from favorites",
+    },
     "chua_co_yeu_thich": {
       "vi": "Chưa có địa điểm yêu thích",
       "en": "No favorite destinations yet",
     },
-    "trang_yeu_thich": {"vi": "Yêu thích", "en": "Favorite"},
+    "xoa_dia_diem": {"vi": "Xoá địa điểm", "en": "Delete location"},
+    "xac_nhan": {
+      "vi": "Bạn có chắc muốn xóa địa điểm này khỏi danh sách yêu thích?",
+      "en":
+          "Are you sure you want to remove this location from your favorites list?",
+    },
+    "huy": {"vi": "Huỷ", "en": "Cancel"},
+    "dong_y": {"vi": "Xác nhận", "en": "Confirm"},
   };
 }
