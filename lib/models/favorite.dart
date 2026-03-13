@@ -1,6 +1,6 @@
 import 'package:explore_vietnam/models/destination.dart';
 
-class FavoriteData {
+class Favorite{
 
   static List<Destination> favorites = [];
 

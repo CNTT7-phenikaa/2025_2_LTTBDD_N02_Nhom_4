@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:explore_vietnam/data/favorite_data.dart';
+import 'package:explore_vietnam/models/favorite.dart';
 import 'package:explore_vietnam/models/destination.dart';
 import 'package:explore_vietnam/data/app_text.dart';
 import 'detail_view.dart';
@@ -25,7 +25,7 @@ class _trangyeuthichState extends State<trangyeuthich> {
   @override
   Widget build(BuildContext context) {
 //lấy ds yeu thich
-    List<Destination> favorites = FavoriteData.favorites;
+    List<Destination> favorites = Favorite.favorites;
 
     return Scaffold(
       appBar: AppBar(

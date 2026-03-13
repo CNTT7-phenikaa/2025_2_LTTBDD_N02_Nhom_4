@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:explore_vietnam/models/destination.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:explore_vietnam/data/favorite_data.dart';
+import 'package:explore_vietnam/models/favorite.dart';
 
 class DetailView extends StatelessWidget {
   final Destination destination;
@@ -310,8 +310,8 @@ class DetailView extends StatelessWidget {
                     child: ElevatedButton.icon(
                       onPressed: () {
                         //xoa yeu thich
-                        if (FavoriteData.isFavorite(destination)) {
-                          FavoriteData.removeFavorite(destination);
+                        if (Favorite.isFavorite(destination)) {
+                          Favorite.removeFavorite(destination);
                           //tbao
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -322,7 +322,7 @@ class DetailView extends StatelessWidget {
                           );
                         } else {
                           //them yeu thich
-                          FavoriteData.addFavorite(destination);
+                          Favorite.addFavorite(destination);
                           //tbao
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
