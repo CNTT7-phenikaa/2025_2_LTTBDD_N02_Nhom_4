@@ -398,7 +398,16 @@ class _Home_ViewState extends State<Home_View> {
       case 0:
         return trangChu();
       case 1:
-        return trangChu();
+        return trangyeuthich(
+          doi_ngon_ngu: ngon_ngu,
+          darkMode: darkModeLocal,
+          doi_nen: (value) {
+            setState(() {
+              darkModeLocal = value;
+            });
+            widget.doi_nen(value);
+          },
+        );
       case 2:
         return TipsView(doi_ngon_ngu: ngon_ngu);
       case 3:

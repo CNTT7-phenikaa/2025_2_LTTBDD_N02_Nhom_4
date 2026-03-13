@@ -17,7 +17,8 @@ class App_text {
     "tips": {"vi": "Mẹo vặt", "en": "Travel Tips"},
     "ngon_ngu": {"vi": "Ngôn ngữ", "en": "Language"},
     "mau_nen": {"vi": "Nền đen", "en": "Dark Mode"},
-    "gioi_thieu": {"vi": "Về chúng tôi", "en": "About Us"},
+    "gioi_thieu": {"vi": "Giới thiệu", "en": "Introduce"},
+    "ve_chung_toi": {"vi": "Về chúng tôi", "en": "About Us"},
     "am_thuc": {"vi": "Ẩm thực", "en": "Food & Drink"},
     "phuong_tien": {"vi": "Phương tiện", "en": "Transportation"},
     "luu_tru": {"vi": "Lưu trú", "en": "Accommodation"},
@@ -29,5 +30,12 @@ class App_text {
       "en": "Language & Communication",
     },
     "thanh_vien": {"vi": "Các thành viên nhóm gồm:", "en": "Team Members:"},
+    "da_them_yeu_thich": {"vi": "Đã thêm vào yêu thích", "en": "Added to favorites"},
+    "da_xoa_yeu_thich": {"vi": "Đã bỏ khỏi yêu thích", "en": "Removed from favorites"},
+    "chua_co_yeu_thich": {
+      "vi": "Chưa có địa điểm yêu thích",
+      "en": "No favorite destinations yet",
+    },
+    "trang_yeu_thich": {"vi": "Yêu thích", "en": "Favorite"},
   };
 }

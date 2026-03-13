@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:explore_vietnam/models/destination.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:explore_vietnam/data/favorite_data.dart';
 
 class DetailView extends StatelessWidget {
   final Destination destination;
@@ -307,7 +308,31 @@ class DetailView extends StatelessWidget {
                   SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        //xoa yeu thich
+                        if (FavoriteData.isFavorite(destination)) {
+                          FavoriteData.removeFavorite(destination);
+                          //tbao
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                App_text.text["da_xoa_yeu_thich"]?[doi_ngon_ngu] ?? "",
+                              ),
+                            ),
+                          );
+                        } else {
+                          //them yeu thich
+                          FavoriteData.addFavorite(destination);
+                          //tbao
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                App_text.text["da_them_yeu_thich"]?[doi_ngon_ngu] ?? "",
+                              ),
+                            ),
+                          );
+                        }
+                      },
                       icon: Icon(Icons.favorite),
                       label: Text(
                         App_text.text["yeu_thich"]?[doi_ngon_ngu] ?? "",

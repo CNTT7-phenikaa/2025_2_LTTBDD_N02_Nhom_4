@@ -43,7 +43,7 @@ class _gioithieuState extends State<gioithieu> {
               const SizedBox(height: 30),
 
               Text(
-                App_text.text["gioi_thieu"]?[widget.doi_ngon_ngu] ?? "",
+                App_text.text["ve_chung_toi"]?[widget.doi_ngon_ngu] ?? "",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
